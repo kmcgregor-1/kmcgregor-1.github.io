@@ -9,7 +9,29 @@ copyright: > # should remain a link to the original theme
   <a href="https://github.com/vuquangtrong/mkdocs-material-blog">Blog Theme</a> /
   <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a>
 
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/kmcgregor-1
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/kmcgreg/
+  analytics:
+    provider: google
+    property: G-FD41F9J8GQ # Add your Google Analytics ID
 
+# Enable additional plugins for SEO
+plugins:
+  - search
+  - mkdocs-jupyter:
+      theme: default
+  - meta # Allows per-page meta descriptions
+  - sitemap # Generates sitemap.xml for search engines
+
+# Add this to markdown_extensions
+markdown_extensions:
+  - attr_list
+  - md_in_html
+  - meta # Enables custom metadata per page
 
 theme:
     name: material
