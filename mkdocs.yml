@@ -5,7 +5,7 @@ site_url: https://kmcgregor-1.github.io/ # must have the trailing slash
 site_author: Kyle McGregor (kyle.mcgregor@mail.mcgill.ca)
 site_description: Kyle McGregor's Personal Website
 copyright: > # should remain a link to the original theme
-  &copy; 2024 Kyle McGregor <br>
+  &copy; 2026 Kyle McGregor <br>
   <a href="https://github.com/vuquangtrong/mkdocs-material-blog">Blog Theme</a> /
   <a href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a>
 
