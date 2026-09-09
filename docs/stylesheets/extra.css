@@ -110,9 +110,13 @@
   text-align: center;
 }
 
-.profile-intro .home-actions .md-button[href="cv/"] {
+.profile-intro .home-actions .md-button.home-cv-button {
   justify-self: start;
-  padding-inline: .8rem;
+  box-sizing: border-box;
+  width: 2.4rem;
+  min-width: 0;
+  max-width: 2.4rem;
+  padding-inline: .3rem;
 }
 
 @media screen and (max-width: 700px) {

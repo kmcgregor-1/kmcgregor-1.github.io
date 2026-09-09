@@ -30,7 +30,7 @@ keywords: Kyle McGregor, astrophysics, FRB, Fast Radio Bursts, astrostatistics, 
 
 <div class="home-actions">
 <a class="md-button" href="about/">About me</a>
-<a class="md-button" href="cv/">CV</a>
+<a class="md-button home-cv-button" href="cv/">CV</a>
 <a class="md-button md-button--primary" href="research/">Research &amp; publications</a>
 <a class="md-button" href="projects/">Current projects</a>
 <a class="md-button" href="astrophotography/">Fun stuff</a>
