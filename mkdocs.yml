@@ -63,10 +63,10 @@ extra_css:
 nav: #relative to the docs folder
   - Home: index.md
   - About me: about/index.md
+  - CV: cv/index.md
   - Research & Publications: research/index.md
   - Projects: projects/index.md
   - Fun stuff: astrophotography/index.md
-  - CV: cv/index.md
 
 # Extensions that we want to use
 markdown_extensions:

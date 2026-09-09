@@ -99,7 +99,7 @@
 .home-actions {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: 1fr 1.65fr 1.2fr 1fr;
+  grid-template-columns: 1fr .55fr 1.65fr 1.2fr 1fr;
   gap: .6rem;
 }
 

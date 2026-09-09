@@ -8,10 +8,10 @@ keywords: Kyle McGregor, astrophysics, FRB, Fast Radio Bursts, astrostatistics, 
 
 <nav class="home-page-nav" aria-label="Explore Kyle McGregor's website">
   <a href="about/">About me</a>
+  <a href="cv/">CV</a>
   <a href="research/">Research &amp; Publications</a>
   <a href="projects/">Projects</a>
   <a href="astrophotography/">Fun stuff</a>
-  <a href="cv/">CV</a>
 </nav>
 
 <div class="profile-intro" markdown>
@@ -30,6 +30,7 @@ keywords: Kyle McGregor, astrophysics, FRB, Fast Radio Bursts, astrostatistics, 
 
 <div class="home-actions">
 <a class="md-button" href="about/">About me</a>
+<a class="md-button" href="cv/">CV</a>
 <a class="md-button md-button--primary" href="research/">Research &amp; publications</a>
 <a class="md-button" href="projects/">Current projects</a>
 <a class="md-button" href="astrophotography/">Fun stuff</a>
