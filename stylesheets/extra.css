@@ -99,7 +99,7 @@
 .home-actions {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: 1fr .55fr 1.65fr 1.2fr 1fr;
+  grid-template-columns: 1fr max-content 1.65fr 1.2fr 1fr;
   gap: .6rem;
 }
 
@@ -108,6 +108,11 @@
   padding: .65rem .6rem;
   font-size: .75rem;
   text-align: center;
+}
+
+.profile-intro .home-actions .md-button[href="cv/"] {
+  justify-self: start;
+  padding-inline: .8rem;
 }
 
 @media screen and (max-width: 700px) {
