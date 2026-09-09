@@ -11,6 +11,7 @@ keywords: Kyle McGregor, astrophysics, FRB, Fast Radio Bursts, astrostatistics, 
   <a href="research/">Research &amp; Publications</a>
   <a href="projects/">Projects</a>
   <a href="astrophotography/">Fun stuff</a>
+  <a href="cv/">CV</a>
 </nav>
 
 <div class="profile-intro" markdown>

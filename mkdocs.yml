@@ -66,6 +66,7 @@ nav: #relative to the docs folder
   - Research & Publications: research/index.md
   - Projects: projects/index.md
   - Fun stuff: astrophotography/index.md
+  - CV: cv/index.md
 
 # Extensions that we want to use
 markdown_extensions:
