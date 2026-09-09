@@ -1,19 +1,11 @@
+# About me
 
+![Kyle at Green Bank](../media/KyleAtGreenBank.JPG "Kyle at Green Bank"){ .feature-image }
 
-# Introduction
+I am a **PhD student in Physics at McGill University**, co-supervised by Vicky Kaspi and Jason Hessels, and a member of the **CHIME/FRB Collaboration**. My research develops **statistically rigorous ways to study fast radio bursts** and the populations revealed by real-time radio surveys.
 
-![Kyle at Green Bank](../media/KyleAtGreenBank.JPG "Kyle at Green Bank"){align="right": style="height:400;width:400px"}
+I am especially interested in the **interface between survey design, observational selection effects, and population-level inference**. These tools help turn rapidly growing FRB samples into reliable constraints on their sources and environments.
 
-I am currently an MSc student at McGill University, co-supervised by Vicky Kaspi and Jason Hessels. Originally from upstate New York, I graduated from Wesleyan University (Middletown, CT) in 2024 with a degree in Astronomy and Physics. As an undergraduate I completed a thesis project with Seth Redfield on exoplanet population statistics and dynamics. I was also heavily involved in Wesleyan's astronomy outreach though the Van Vleck Observatory, and was a four-year student-athlete on Wesleyan's Swimming and Diving team. 
+## Beyond research
 
-Over the summer of 2023 I completed a summer Research Experiences for Undergraduates (REU) project at West Virginia University, where I worked with Duncan Lorimer on a population synthesis of repeating Fast Radio Bursts (FRBs). 
-This introduced me to this enigmatic class of radio transients, which I continue to study in my graduate work at McGill.
-
-
-## Other Interests
-
-- [Astrophotography](../astrophotography/index.md)
-
-
-## CV
-<iframe width="100%" height="600" src="./media/kmcgregor_CV.pdf">
+- [Fun stuff](../astrophotography/index.md)

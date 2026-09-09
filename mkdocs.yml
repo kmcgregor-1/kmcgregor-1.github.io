@@ -3,7 +3,7 @@ site_name: Kyle McGregor
 # Change to your own site
 site_url: https://kmcgregor-1.github.io/ # must have the trailing slash
 site_author: Kyle McGregor (kyle.mcgregor@mail.mcgill.ca)
-site_description: Kyle McGregor's Personal Website
+site_description: Kyle McGregor is a PhD student studying fast radio bursts and astrostatistics at McGill University.
 copyright: > # should remain a link to the original theme
   &copy; 2026 Kyle McGregor <br>
   <a href="https://github.com/vuquangtrong/mkdocs-material-blog">Blog Theme</a> /
@@ -19,29 +19,15 @@ extra:
     provider: google
     property: G-FD41F9J8GQ # Add your Google Analytics ID
 
-# Enable additional plugins for SEO
-plugins:
-  - search
-  - mkdocs-jupyter:
-      theme: default
-  - meta # Allows per-page meta descriptions
-  - sitemap # Generates sitemap.xml for search engines
-
-# Add this to markdown_extensions
-markdown_extensions:
-  - attr_list
-  - md_in_html
-  - meta # Enables custom metadata per page
-
 theme:
     name: material
     palette:
       # Palette toggle for light mode
       - scheme: default
         # Color of the top bar
-        primary: red
+        primary: indigo
         # Link highlight color
-        accent : orange
+        accent : cyan
         
         toggle:
           icon: material/brightness-7 
@@ -56,14 +42,10 @@ theme:
     features:
     - navigation.instant # some features may not work properly with XHR
     - navigation.tracking # the URL changes with the active anchor
-    - navigation.tabs # first top-level sections are shown as tabs
-    - navigation.tabs.sticky # tabs always show
     - navigation.sections # sections are rendered as groups in the sidebar
     - navigation.expand # all sections are expanded
     - navigation.indexes # link an index.md page to a section
     - navigation.top # show back-to-top button
-    - toc.integrate # show table of contents to navigation panel
-    - header.autohide
     - content.code.annotate 
     - content.code.copy
 
@@ -71,17 +53,19 @@ extra_javascript:
   
   # For rendering latex
   - javascripts/mathjax.js
-  - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - stylesheets/extra.css
 
 
 # For describing the navigation panel
 nav: #relative to the docs folder
   - Home: index.md
-  - About Me: about/index.md
-  - Research: research/index.md
+  - About me: about/index.md
+  - Research & Publications: research/index.md
   - Projects: projects/index.md
-  - Astrophotography: astrophotography/index.md
+  - Fun stuff: astrophotography/index.md
 
 # Extensions that we want to use
 markdown_extensions:
@@ -96,4 +80,3 @@ plugins:
     # Using jupyter notebook  
     - mkdocs-jupyter:
           theme: default
-

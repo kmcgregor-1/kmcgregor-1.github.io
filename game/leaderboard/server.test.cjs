@@ -1,0 +1,41 @@
+const {test}=require('node:test');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const os=require('node:os');
+const path=require('node:path');
+const {createService}=require('./server.cjs');
+test('bounded persistent storage, validation, token replay and request limits',async t=>{
+  const directory=fs.mkdtempSync(path.join(os.tmpdir(),'orbit-scores-test-'));
+  let time=1000000;
+  const origin='https://kmcgregor-1.github.io';
+  const server=createService({directory,origin,now:()=>time});
+  await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+  t.after(async()=>{server.closeAllConnections();await new Promise(resolve=>server.close(resolve));fs.rmSync(directory,{recursive:true});});
+  const url=`http://127.0.0.1:${server.address().port}`;
+  const post=(route,data,headers={})=>fetch(url+route,{method:'POST',headers:{Origin:origin,'Content-Type':'application/json',...headers},body:JSON.stringify(data)});
+  const session=async()=>{const r=await post('/sessions',{});assert.equal(r.status,201);return (await r.json()).token;};
+  assert.equal((await post('/sessions',{}, {Origin:'https://evil.example'})).status,403);
+  assert.equal((await post('/sessions',{junk:'x'.repeat(600)})).status,413);
+  let token=await session();
+  assert.equal((await post('/scores',{token,name:'ABC',score:1})).status,429);
+  time+=6000;
+  for(const entry of [{name:'A\nB',score:1},{name:['ABC'],score:1},{name:'ABC',score:1000},{name:'ABC',score:0}])assert.equal((await post('/scores',{token,...entry})).status,400);
+  assert.equal((await post('/scores',{token,name:'ABC',score:1})).status,201);
+  assert.equal((await post('/scores',{token,name:'ABC',score:1})).status,403);
+  for(let i=0;i<120;i++){
+    time+=600001;token=await session();time+=6000;
+    assert.equal((await post('/scores',{token,name:'WIN',score:100+i})).status,201);
+  }
+  const file=path.join(directory,'fastest-times.txt');
+  assert(fs.statSync(file).size<=1000);
+  assert.equal(fs.readFileSync(file,'utf8').trim().split('\n').length,100);
+  const rows=(await (await fetch(url+'/scores')).json()).scores;
+  assert.equal(rows.length,100);assert.equal(rows[0].score,1);assert.equal(rows[99].score,198);
+  const restarted=createService({directory,origin});
+  await new Promise(resolve=>restarted.listen(0,'127.0.0.1',resolve));
+  const loaded=await (await fetch(`http://127.0.0.1:${restarted.address().port}/scores`)).json();
+  assert.deepEqual(loaded.scores,rows);restarted.closeAllConnections();await new Promise(resolve=>restarted.close(resolve));
+  time+=600001;
+  for(let i=0;i<12;i++)await post('/sessions',{});
+  assert.equal((await post('/sessions',{})).status,429);
+});

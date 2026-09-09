@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Orbit game</title>
+<style>
+#score-dialog{background:repeating-linear-gradient(0deg,#00000018 0px,#00000018 1px,transparent 1px,transparent 4px),#070e1c;border:2px solid #69d9ef;border-radius:4px;box-shadow:0 0 24px #69d9ef35,inset 0 0 24px #69d9ef0c}
+#score-dialog #score-list{list-style:none;padding:0;margin:12px 0;font:700 clamp(16px,4vw,22px)/1.7 monospace;letter-spacing:2px;font-variant-numeric:tabular-nums}
+#score-dialog #score-list li{display:grid;grid-template-columns:3ch 1fr auto;gap:18px;padding:8px 0;color:#85e7ef;border-bottom:1px solid #85e7ef18;text-shadow:0 0 8px #85e7ef55}
+#score-dialog #score-list li:nth-child(1){color:#ffe27c;text-shadow:0 0 10px #ffe27c65}
+#score-dialog #score-list li:nth-child(2){color:#ff9cce}
+#score-dialog #score-list li:nth-child(3){color:#b4a2ff}
+#score-dialog #score-list .score-empty{display:block;text-align:center;font-size:15px}
+.leaderboard-only #score-summary,.leaderboard-only #score-form,.leaderboard-only #score-message,.leaderboard-only #download-scores{display:none}
+.leaderboard-only #score-title{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%)}
+#score-dialog.leaderboard-only{padding-top:38px}
+.leaderboard-only #close-scores{position:absolute;right:8px;top:4px;font-size:0;padding:4px 8px;background:transparent;border:0}
+.leaderboard-only #close-scores::after{content:'×';font:24px monospace;color:#85e7ef}
+*{box-sizing:border-box}body{margin:0;background:#081322;color:#e5edf7;font:14px system-ui,sans-serif}button{font:inherit;color:inherit;background:#172c43;border:1px solid #36516b;border-radius:6px;padding:9px 13px;cursor:pointer}button:hover,button[aria-pressed=true]{background:#285273}button:focus-visible,canvas:focus-visible{outline:2px solid #79deff;outline-offset:-3px}.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:12px 16px;border-bottom:1px solid #26374a}.bar strong{margin-right:auto}.stage{position:relative}canvas{display:block;width:100%;height:420px}.hud{position:absolute;top:12px;left:12px;pointer-events:none;background:#081322dd;padding:10px 12px;border:1px solid #28405a;border-radius:6px;font:11px/1.7 monospace;white-space:pre;color:#bcd4e9}.controls{padding:12px 16px}.pad{display:flex;flex-wrap:wrap;gap:7px}.pad button{touch-action:none;font-size:12px}.hint{font-size:12px;color:#9fb4cc;margin:10px 0 0}.status{color:#80d9ef;font-size:12px} @media(max-width:480px){canvas{height:360px}.hud{font-size:10px}}
+</style></head>
+<body>
+<div class="bar"><strong>Orbit game</strong><button id="play">Start</button><button id="reset">Reset</button><button id="guide" aria-pressed="false">Guiding center</button><button id="high-scores">High scores</button></div>
+<div class="stage"><canvas tabindex="0" aria-label="Orbital simulation. Use arrow keys to thrust and Space to pause."></canvas><div class="hud" id="hud"></div><div class="arcade-timer" aria-label="Elapsed game time in seconds"><span>TIME</span><div><b id="arcade-time">000</b><small> s</small></div></div></div>
+<div class="controls"><div class="pad"><button data-key="ArrowUp">↑ Prograde</button><button data-key="ArrowDown">↓ Retrograde</button><button data-key="ArrowLeft">← Normal in</button><button data-key="ArrowRight">→ Normal out</button></div><p class="hint">Click Start, then use the arrow keys or hold the buttons to thrust. Space pauses. Collect all ten green planets as quickly as possible. Fastest completion wins; time limit: 999 seconds. Purple: guiding-center approximation (best at low eccentricity).</p><p class="status" id="status" role="status">Ready to start · Start in a circular orbit at 1 AU.</p></div>
+<dialog id="score-dialog" aria-labelledby="score-title">
+  <h2 id="score-title">High scores</h2>
+  <p id="score-summary"></p>
+  <form id="score-form">
+    <label for="initials">Your three-letter name</label>
+    <div class="score-entry"><input id="initials" name="initials" minlength="3" maxlength="3" pattern="[A-Za-z]{3}" placeholder="AAA" autocomplete="off" required aria-label="Three-letter arcade name"><button type="submit">Save score</button></div>
+  </form>
+  <p id="score-message" role="status"></p>
+  <ol id="score-list"></ol>
+  <div class="score-actions"><button id="download-scores">Download .txt</button><button id="close-scores">Close</button></div>
+</dialog>
+<style>
+.arcade-timer{position:absolute;right:12px;top:12px;text-align:right;pointer-events:none;background:#081322dd;border:1px solid #5a6639;border-radius:8px;padding:10px 14px;color:#ffe78a;box-shadow:0 0 20px #ffe78a12}.arcade-timer>span{font:700 11px monospace;letter-spacing:4px}.arcade-timer b{font:900 clamp(30px,7vw,52px)/1.1 monospace;letter-spacing:3px;text-shadow:0 0 12px #ffce5080;font-variant-numeric:tabular-nums}.arcade-timer small{font:14px monospace}
+dialog{width:min(440px,calc(100% - 24px));max-height:85vh;overflow:auto;background:#102238;color:#e5edf7;border:1px solid #496580;border-radius:12px;padding:24px}dialog::backdrop{background:#020811bd}dialog h2{margin:0 0 12px;color:#a5e6ff;font-size:26px}#score-summary,#score-message{font-size:13px;color:#bcd4e9}.score-entry,.score-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}#initials{width:100px;padding:8px;background:#081322;color:#fff;border:1px solid #79deff;border-radius:4px;font:24px monospace;text-transform:uppercase;letter-spacing:5px}#score-list{padding-left:28px;font:14px/1.9 monospace}#score-list li{padding-left:6px}#score-form[hidden]{display:none}
+</style>
+<script src="physics.js"></script><script src="config.js"></script><script src="scores.js"></script><script src="game.js"></script>
+</body></html>
